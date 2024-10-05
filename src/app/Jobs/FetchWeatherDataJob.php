@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Models\Location;
 use App\Repositories\LocationRepository;
 use App\Services\WeatherApi\WeatherAggregator;
 use App\Repositories\WeatherDataRepository;

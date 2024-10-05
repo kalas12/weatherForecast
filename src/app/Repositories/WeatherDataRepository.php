@@ -16,9 +16,9 @@ readonly class WeatherDataRepository
 	 * @param WeatherDataDTO $weatherDataDTO
 	 * @param int $locationId
 	 * @param string $source
-	 * @return void
+	 * @return WeatherData
 	 */
-	public function create(WeatherDataDTO $weatherDataDTO, int $locationId, string $source): void
+	public function create(WeatherDataDTO $weatherDataDTO, int $locationId, string $source): WeatherData
 	{
 		$weatherData = new WeatherData();
 		$weatherData->location_id = $locationId;
@@ -27,6 +27,8 @@ readonly class WeatherDataRepository
 		$weatherData->humidity = $weatherDataDTO->humidity;
 		$weatherData->weather_condition = $weatherDataDTO->weatherCondition;
 		$weatherData->save();
+
+		return $weatherData;
 	}
 
 	/**

@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Jobs\FetchWeatherDataJob;
 use App\Models\Location;
 use App\Repositories\LocationRepository;
 use App\Services\DTO\LocationDTO;
-use Exception;
-use Illuminate\Database\Eloquent\Collection;
 
 readonly class LocationService
 {

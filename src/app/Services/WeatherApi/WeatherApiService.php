@@ -9,7 +9,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Log;
 
-class WeatherApiService implements WeatherSourceInterface
+readonly class WeatherApiService implements WeatherSourceInterface
 {
 	private Client $client;
 	private string $apiKey;
