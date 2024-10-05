@@ -35,4 +35,14 @@ return [
         ],
     ],
 
+	//Сервисы прогнозов погоды
+	'weatherApi' => [
+		'key' => env('WEATHERAPI_API_KEY'),
+		'base_uri' => env('WEATHERAPI_AP_BASE_URI'),
+	],
+	'visualcrossingApi' => [
+		'key' => env('VISUALCROSSING_API_KEY'),
+		'base_uri' =>  env('VISUALCROSSING_API_BASE_URI'),
+	],
+
 ];
