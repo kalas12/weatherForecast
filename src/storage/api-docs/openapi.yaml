@@ -1,0 +1,15 @@
+openapi: 3.0.0
+info:
+  title: Weather Forecast API
+  version: 1.0.0
+  description: API for weather forecasting
+
+servers:
+  - url: 'http://localhost:8000'
+    description: Local Server
+
+paths:
+  /api/locations:
+    $ref: 'postLocation.yaml'
+  /api/locations/{locationName}/weather:
+    $ref: 'getWeather.yaml'

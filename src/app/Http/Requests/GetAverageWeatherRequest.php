@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
-use App\Services\DTO\LocationDTO;
 use Illuminate\Foundation\Http\FormRequest;
 
 class GetAverageWeatherRequest extends FormRequest

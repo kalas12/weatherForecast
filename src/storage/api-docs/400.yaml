@@ -1,0 +1,7 @@
+description: 'Неверный запрос'
+content:
+  application/json:
+    schema:
+      properties:
+        error: { type: string, example: 'Некорректные данные' }
+      type: object

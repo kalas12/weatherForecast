@@ -1,0 +1,8 @@
+description: 'Успешный ответ'
+content:
+  application/json:
+    schema:
+      properties:
+        average_temperature: { type: string, example: '14.02' }
+        average_humidity: { type: string, example: '75.08' }
+      type: object

@@ -1,0 +1,7 @@
+description: 'Локация Москва не найдена'
+content:
+  application/json:
+    schema:
+      properties:
+        error: { type: string, example: 'Локация не найдена' }
+      type: object

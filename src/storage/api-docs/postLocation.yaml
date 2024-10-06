@@ -1,0 +1,30 @@
+post:
+  tags:
+    - Locations
+  summary: 'Добавить новую локацию'
+  description: 'Добавление новой локации с указанием имени, широты и долготы.'
+  operationId: addLocation
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          properties:
+            name:
+              description: 'Имя локации'
+              type: string
+              example: Москва
+            latitude:
+              description: 'Широта локации'
+              type: number
+              example: 55.7558
+            longitude:
+              description: 'Долгота локации'
+              type: number
+              example: 37.6173
+          type: object
+  responses:
+    '201':
+      $ref: '201.yaml'
+    '400':
+      $ref: '400.yaml'

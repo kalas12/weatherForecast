@@ -58,11 +58,15 @@ docker-compose exec app bash
 ```bash
 php artisan migrate
 ```
-### 7. Запуск фоновой задачи
+### 7. Загрузка сидов
+```bash
+php artisan db:seed
+```
+### 8. Запуск фоновой задачи
 ```bash
 php artisan queue:work
 ```
-### 8. Запуск в ручном режиме Schedule для запроса в внешние сервисы
+### 9. Запуск в ручном режиме Schedule для запроса в внешние сервисы
 ```bash
 php artisan schedule:run
 ```

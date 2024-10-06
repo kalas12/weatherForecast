@@ -16,14 +16,14 @@ readonly class WeatherService
 	}
 
 	/**
-	 * Получить локацию по названию.
+	 * Получить прогноз погоды по локации в промежутке дат.
 	 *
 	 * @param string $locationName
 	 * @param string $startDate
 	 * @param string $endDate
 	 * @return Collection
 	 */
-	public function getAverageWeatherByLocationAndPeriod(
+	public function getWeatherData(
 		string $locationName,
 		string $startDate,
 		string $endDate
@@ -40,7 +40,7 @@ readonly class WeatherService
 	 * @param string $endDate
 	 * @return array|null
 	 */
-	public function getOrCacheAverageWeather(Location $location, string $startDate, string $endDate): ?array
+	public function getAverageWeather(Location $location, string $startDate, string $endDate): ?array
 	{
 		// Генерируем ключ для кэша
 		$cacheKey = "weather_average_{$location->id}_{$startDate}_{$endDate}";
@@ -48,7 +48,7 @@ readonly class WeatherService
 		// Кэширование результата
 		return Cache::remember($cacheKey, now()->addMinutes(10), function () use ($location, $startDate, $endDate) {
 			// Запрашиваем данные о погоде и считаем средние значения
-			$weatherData = $this->getAverageWeatherByLocationAndPeriod($location->name, $startDate, $endDate);
+			$weatherData = $this->getWeatherData($location->name, $startDate, $endDate);
 
 			if ($weatherData->isEmpty()) {
 				return null;

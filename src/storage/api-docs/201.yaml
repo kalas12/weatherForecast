@@ -1,0 +1,7 @@
+description: 'Локация успешно создана'
+content:
+  application/json:
+    schema:
+      properties:
+        message: { type: string, example: 'Локация Москва успешно создана.' }
+      type: object

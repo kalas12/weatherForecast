@@ -1,0 +1,42 @@
+get:
+  tags:
+    - Locations
+  summary: 'Получить средние погодные данные для локации'
+  description: 'Получение средних погодных данных для указанной локации по имени и диапазону дат.'
+  operationId: getAverageWeather
+  parameters:
+    -
+      name: locationName
+      in: path
+      description: 'Имя локации.'
+      required: true
+      schema:
+        type: string
+        example: Москва
+    -
+      name: start
+      in: query
+      description: 'Дата начала для данных о погоде.'
+      required: true
+      schema:
+        type: string
+        format: date
+        example: '2024-01-01'
+    -
+      name: end
+      in: query
+      description: 'Дата окончания для данных о погоде.'
+      required: true
+      schema:
+        type: string
+        format: date
+        example: '2024-01-31'
+  responses:
+    '200':
+      $ref: '200.yaml'
+    '204':
+      $ref: '204.yaml'
+    '400':
+      $ref: '400.yaml'
+    '404':
+      $ref: '404.yaml'

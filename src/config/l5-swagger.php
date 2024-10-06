@@ -28,12 +28,12 @@ return [
                 /*
                  * File name of the generated YAML documentation file
                  */
-                'docs_yaml' => 'api-docs.yaml',
+                'docs_yaml' => 'openapi.yaml',
 
                 /*
                  * Set this to `json` or `yaml` to determine which documentation file to use in UI
                  */
-                'format_to_use_for_docs' => env('L5_FORMAT_TO_USE_FOR_DOCS', 'json'),
+                'format_to_use_for_docs' => env('L5_FORMAT_TO_USE_FOR_DOCS', 'yaml'),
 
                 /*
                  * Absolute paths to directory containing the swagger annotations are stored.

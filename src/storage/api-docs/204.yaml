@@ -1,0 +1,7 @@
+description: 'Нет данных о погоде для данной локации и указанного диапазона дат'
+content:
+  application/json:
+    schema:
+      properties:
+        message: { type: string, example: 'Нет данных о погоде для локации Москва за указанный период.' }
+      type: object
