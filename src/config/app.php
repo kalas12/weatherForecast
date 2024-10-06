@@ -225,4 +225,6 @@ return [
 
 	],
 
+	'chunk_size' => env('CHUNK_SIZE', 100),
+
 ];

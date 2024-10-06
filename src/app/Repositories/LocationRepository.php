@@ -46,12 +46,14 @@ readonly class LocationRepository
 	}
 
 	/**
-	 * Получить все локации.
+	 * Получить все локации через чанки.
 	 *
-	 * @return Collection<int, Location>
+	 * @param int $chunkSize
+	 * @param callable $callback
+	 * @return void
 	 */
-	public function getAllLocations(): Collection
+	public function getAllLocationsInChunks(int $chunkSize, callable $callback): void
 	{
-		return Location::all();
+		Location::chunk($chunkSize, $callback);
 	}
 }

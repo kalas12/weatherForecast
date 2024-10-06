@@ -38,11 +38,11 @@ return [
 	//Сервисы прогнозов погоды
 	'weatherApi' => [
 		'key' => env('WEATHERAPI_API_KEY'),
-		'base_uri' => env('WEATHERAPI_AP_BASE_URI'),
+		'base_uri' => env('WEATHERAPI_AP_BASE_URI', 'http://api.weatherapi.com/v1/'),
 	],
 	'visualcrossingApi' => [
 		'key' => env('VISUALCROSSING_API_KEY'),
-		'base_uri' =>  env('VISUALCROSSING_API_BASE_URI'),
+		'base_uri' =>  env('VISUALCROSSING_API_BASE_URI', 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/'),
 	],
 
 ];
