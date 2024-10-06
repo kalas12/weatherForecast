@@ -23,6 +23,7 @@ class LocationController extends Controller
 	/**
 	 * @OA\Post(
 	 *     path="/locations",
+	 *     tags={"Locations"},
 	 *     summary="Добавить новую локацию",
 	 *     description="Добавление новой локации с указанием имени, широты и долготы.",
 	 *     operationId="addLocation",
@@ -80,6 +81,7 @@ class LocationController extends Controller
 	/**
 	 * @OA\Get(
 	 *     path="/locations/{locationName}/weather",
+	 *     tags={"Locations"},
 	 *     summary="Получить средние погодные данные для локации",
 	 *     description="Получение средних погодных данных для указанной локации по имени и диапазону дат.",
 	 *     operationId="getAverageWeather",
