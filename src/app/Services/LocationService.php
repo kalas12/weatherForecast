@@ -22,7 +22,12 @@ readonly class LocationService
 	 */
 	public function create(LocationDTO $locationDTO): Location
 	{
-		return $this->repository->create($locationDTO);
+		$location = $this->getByName($locationDTO->name);
+		if (is_null($location)) {
+			$location = $this->repository->create($locationDTO);
+		}
+
+		return $location;
 	}
 
 	/**

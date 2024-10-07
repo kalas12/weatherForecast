@@ -19,15 +19,11 @@ readonly class LocationRepository
 	 */
 	public function create(LocationDTO $locationDTO): Location
 	{
-		$location = $this->getByName($locationDTO->name);
-
-		if (is_null($location)) {
-			$location = new Location();
-			$location->name = $locationDTO->name;
-			$location->latitude = $locationDTO->latitude;
-			$location->longitude = $locationDTO->longitude;
-			$location->save();
-		}
+		$location = new Location();
+		$location->name = $locationDTO->name;
+		$location->latitude = $locationDTO->latitude;
+		$location->longitude = $locationDTO->longitude;
+		$location->save();
 
 		return $location;
 	}
