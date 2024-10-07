@@ -40,4 +40,16 @@ readonly class LocationService
 	{
 		return $this->repository->getByName($name);
 	}
+
+	/**
+	 * Получить все локации через чанки.
+	 *
+	 * @param int $chunkSize
+	 * @param callable $callback
+	 * @return void
+	 */
+	public function getAllLocationsInChunks(int $chunkSize, callable $callback): void
+	{
+		$this->repository->getAllLocationsInChunks($chunkSize, $callback);
+	}
 }

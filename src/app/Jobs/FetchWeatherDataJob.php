@@ -2,14 +2,16 @@
 
 namespace App\Jobs;
 
-use App\Repositories\LocationRepository;
+use App\Services\LocationService;
 use App\Services\WeatherApi\WeatherAggregator;
-use App\Repositories\WeatherDataRepository;
-use Illuminate\Bus\Queueable;
+use App\Services\WeatherService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Bus\Queueable;
 
 class FetchWeatherDataJob implements ShouldQueue
 {
@@ -19,19 +21,29 @@ class FetchWeatherDataJob implements ShouldQueue
 	 * Execute the job.
 	 *
 	 * @param WeatherAggregator $aggregator
-	 * @param WeatherDataRepository $weatherDataRepository
-	 * @param LocationRepository $locationRepository
+	 * @param WeatherService $weatherService
+	 * @param LocationService $locationService
 	 * @return void
 	 */
 	public function handle(
 		WeatherAggregator $aggregator,
-		WeatherDataRepository $weatherDataRepository,
-		LocationRepository $locationRepository
+		WeatherService $weatherService,
+		LocationService $locationService
 	): void {
-		$locationRepository->getAllLocationsInChunks(config('app.chunk_size'), function ($locations) use ($aggregator, $weatherDataRepository) {
+		$locationService->getAllLocationsInChunks(config('app.chunk_size'), function ($locations) use ($aggregator, $weatherService) {
 			foreach ($locations as $location) {
 				$weatherDataList = $aggregator->aggregateWeatherData($location);
-				$weatherDataRepository->createInTransaction($weatherDataList, $location->id);
+				try {
+					DB::transaction(function () use ($weatherDataList, $location, $weatherService) {
+						foreach ($weatherDataList as $weatherDataDTO) {
+							$weatherService->create($weatherDataDTO, $location->id, $weatherDataDTO->source);
+						}
+					});
+
+					Log::channel('info')->info("Записи о погоде для локации с ID {$location->id} успешно созданы.");
+				} catch (\Exception $e) {
+					Log::channel('error')->error("Ошибка при создании записей о погоде для локации с ID {$location->id}: " . $e->getMessage());
+				}
 			}
 		});
 	}

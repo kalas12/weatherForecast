@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Models\Location;
+use App\Models\WeatherData;
 use App\Repositories\WeatherDataRepository;
+use App\Services\DTO\WeatherDataDTO;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
 
@@ -63,5 +65,18 @@ readonly class WeatherService
 				'average_humidity' => round($averageHumidity, 2),
 			];
 		});
+	}
+
+	/**
+	 * Создать новый прогноз погоды.
+	 *
+	 * @param WeatherDataDTO $weatherDataDTO
+	 * @param int $locationId
+	 * @param string $source
+	 * @return WeatherData
+	 */
+	public function create(WeatherDataDTO $weatherDataDTO, int $locationId, string $source): WeatherData
+	{
+		return $this->repository->create($weatherDataDTO, $locationId, $source);
 	}
 }

@@ -7,8 +7,6 @@ namespace App\Repositories;
 use App\Models\WeatherData;
 use App\Services\DTO\WeatherDataDTO;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
 readonly class WeatherDataRepository
 {
@@ -47,27 +45,5 @@ readonly class WeatherDataRepository
 			->byLocationName($name)
 			->byDateRange($startDate, $endDate)
 			->get();
-	}
-
-	/**
-	 * Создать новые записи о погоде в транзакции с логированием ошибок.
-	 *
-	 * @param array $weatherDataDTOs
-	 * @param int $locationId
-	 * @return void
-	 */
-	public function createInTransaction(array $weatherDataDTOs, int $locationId): void
-	{
-		try {
-			DB::transaction(function () use ($weatherDataDTOs, $locationId) {
-				foreach ($weatherDataDTOs as $weatherDataDTO) {
-					$this->create($weatherDataDTO, $locationId, $weatherDataDTO->source);
-				}
-			});
-
-			Log::channel('info')->info("Записи о погоде для локации с ID {$locationId} успешно созданы.");
-		} catch (\Exception $e) {
-			Log::channel('error')->error("Ошибка при создании записей о погоде для локации с ID {$locationId}: " . $e->getMessage());
-		}
 	}
 }

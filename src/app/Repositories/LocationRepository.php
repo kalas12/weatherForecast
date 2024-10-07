@@ -6,8 +6,6 @@ namespace App\Repositories;
 
 use App\Models\Location;
 use App\Services\DTO\LocationDTO;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 readonly class LocationRepository
 {
