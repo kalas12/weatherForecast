@@ -12,7 +12,8 @@ class GetAverageWeatherRequest extends FormRequest
 	{
 		return [
 			'start' => 'required|date|before_or_equal:end',
-			'end' => 'required|date|after_or_equal:start'
+			'end' => 'required|date|after_or_equal:start',
+			'locationName' => 'string|max:255',
 		];
 	}
 
